@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Apoyos en Casa</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet"/>
+
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Nunito',sans-serif;background:#FFF9F0;color:#1F2937;line-height:1.6}
@@ -12,45 +13,48 @@ body{font-family:'Nunito',sans-serif;background:#FFF9F0;color:#1F2937;line-heigh
 header{background:linear-gradient(135deg,#4CAF82,#1A7A52);padding:40px 20px 60px;text-align:center;position:relative;overflow:hidden}
 header::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(255,209,102,.2) 0%,transparent 60%)}
 .h-emoji{font-size:3rem;display:block;margin-bottom:8px;animation:bounce 2.5s infinite}
-@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+
+@keyframes bounce{
+0%,100%{transform:translateY(0)}
+50%{transform:translateY(-7px)}
+}
+
 header h1{font-family:'Fredoka One',cursive;font-size:clamp(1.9rem,7vw,3rem);color:#fff;position:relative}
 header p{color:rgba(255,255,255,.88);font-size:clamp(.9rem,3vw,1.05rem);margin-top:8px;font-weight:600;position:relative}
 
-.aw{max-width:700px;margin:0 auto;padding:0 16px}
-.aviso{background:#FFF3CD;border-left:5px solid #FFD166;border-radius:0 16px 16px 0;margin:-24px 0 0;padding:18px 20px;box-shadow:0 4px 16px rgba(0,0,0,.07)}
-.aviso strong{font-weight:800;font-size:.92rem;color:#92400E;display:block;margin-bottom:5px}
-.aviso p{font-size:.86rem;color:#78350F;line-height:1.55}
-
 .wrap{max-width:700px;margin:0 auto;padding:0 16px 60px}
-
-.card-info{background:#fff;border-radius:20px;padding:22px;margin:26px 0 8px;box-shadow:0 2px 12px rgba(0,0,0,.06)}
-.card-info h2{font-family:'Fredoka One',cursive;font-size:1.2rem;color:#4CAF82;margin-bottom:11px}
-.steps{list-style:none;display:flex;flex-direction:column;gap:9px}
-.steps li{display:flex;align-items:flex-start;gap:11px;font-size:.91rem;color:#6B7280}
-.snum{background:#4CAF82;color:#fff;width:24px;height:24px;border-radius:50%;font-weight:800;font-size:.8rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
-
-.badge{background:linear-gradient(135deg,#FFD166,#F59E0B);border-radius:18px;padding:18px 22px;margin:14px 0 22px;box-shadow:0 4px 14px rgba(245,158,11,.2)}
-.badge h3{font-family:'Fredoka One',cursive;font-size:1.05rem;color:#78350F;margin-bottom:5px}
-.badge p{font-size:.86rem;color:#92400E;line-height:1.55}
 
 .sec-title{font-family:'Fredoka One',cursive;font-size:1.35rem;margin:34px 0 13px;display:flex;align-items:center;gap:9px}
 
-.tarjeta{border-radius:22px;margin-bottom:16px;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.07);transition:transform .2s,box-shadow .2s;opacity:0;transform:translateY(16px);animation:fu .5s forwards}
-.tarjeta:nth-child(1){animation-delay:.1s}.tarjeta:nth-child(2){animation-delay:.2s}
-.tarjeta:nth-child(3){animation-delay:.3s}.tarjeta:nth-child(4){animation-delay:.4s}
-.tarjeta:nth-child(5){animation-delay:.5s}
-@keyframes fu{to{opacity:1;transform:translateY(0)}}
-.tarjeta:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.11)}
+.tarjeta{border-radius:22px;margin-bottom:16px;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.07)}
 
-.thead{padding:18px 22px 15px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;user-select:none}
+.thead{
+padding:18px 22px 15px;
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:12px;
+user-select:none
+}
+
 .thl{display:flex;align-items:center;gap:13px}
 .tico{font-size:1.9rem;line-height:1}
 .ttitle{font-family:'Fredoka One',cursive;font-size:clamp(.98rem,4vw,1.18rem);line-height:1.2}
 .tsub{font-size:.78rem;opacity:.72;font-weight:600;margin-top:2px}
 .chev{font-size:.95rem;transition:transform .3s;opacity:.75}
+
 .tarjeta.open .chev{transform:rotate(180deg)}
-.tbody{display:none;background:#fff;padding:4px 22px 22px}
-.tarjeta.open .tbody{display:block}
+
+.tbody{
+display:none;
+background:#fff;
+padding:4px 22px 22px
+}
+
+.tarjeta.open .tbody{
+display:block
+}
 
 .t1 .thead{background:linear-gradient(135deg,#4CAF82,#2E9E6B);color:#fff}
 .t2 .thead{background:linear-gradient(135deg,#4A90D9,#2B74C4);color:#fff}
@@ -68,620 +72,308 @@ header p{color:rgba(255,255,255,.88);font-size:clamp(.9rem,3vw,1.05rem);margin-t
 
 .vlabel{font-weight:800;font-size:.86rem;margin:14px 0 7px;color:#1F2937;display:block}
 .vlist{display:flex;flex-direction:column;gap:8px}
-.vbtn{display:flex;align-items:center;gap:11px;background:#EAF3FB;border:1.5px solid #C3DCF5;border-radius:12px;padding:12px 14px;text-decoration:none;color:#1A5FA8;font-weight:700;font-size:.87rem;transition:background .18s,transform .18s,border-color .18s,box-shadow .18s}
-.vbtn:hover{background:#D0E8F8;border-color:#4A90D9;transform:translateX(5px);box-shadow:0 3px 10px rgba(74,144,217,.18)}
+
+.vbtn{
+display:flex;
+align-items:center;
+gap:11px;
+background:#EAF3FB;
+border:1.5px solid #C3DCF5;
+border-radius:12px;
+padding:12px 14px;
+text-decoration:none;
+color:#1A5FA8;
+font-weight:700;
+font-size:.87rem;
+transition:.2s
+}
+
+.vbtn:hover{
+background:#D0E8F8;
+border-color:#4A90D9;
+transform:translateX(5px)
+}
+
 .vbtn .ve{font-size:1.3rem;flex-shrink:0}
 .vbtn .vt{display:flex;flex-direction:column;flex:1}
 .vbtn .vn{line-height:1.3}
 .vbtn .vd{font-size:.73rem;font-weight:600;color:#6B7280;margin-top:1px}
 .vbtn .va{font-size:.9rem;opacity:.4;flex-shrink:0}
 
-.alert{margin-top:17px;background:#FFFBF0;border:1.5px solid #FBBF24;border-radius:13px;overflow:hidden}
-.alert-t{background:#FEF3C7;padding:9px 15px;font-weight:800;font-size:.9rem;color:#92400E;border-bottom:1.5px solid #FBBF24}
-.alert-b{padding:12px 15px}
-.al{list-style:none;display:flex;flex-direction:column;gap:6px}
-.al li{display:flex;gap:9px;font-size:.86rem;color:#78350F;align-items:flex-start;line-height:1.5}
-.al li::before{content:'→';font-weight:900;flex-shrink:0;color:#D97706}
-.alert-note{margin-top:9px;font-size:.8rem;color:#92400E;font-style:italic;font-weight:700}
+.contacto{
+background:#fff;
+border-radius:20px;
+padding:22px;
+margin-top:35px;
+box-shadow:0 2px 12px rgba(0,0,0,.06);
+border-left:4px solid #4CAF82
+}
 
-.recs{background:#fff;border-radius:20px;padding:22px;box-shadow:0 2px 12px rgba(0,0,0,.06)}
-.recs h3{font-family:'Fredoka One',cursive;font-size:1rem;margin:18px 0 7px;color:#1F2937}
-.recs h3:first-child{margin-top:0}
-.recs ul{list-style:none;display:flex;flex-direction:column;gap:7px}
-.recs ul li{display:flex;gap:9px;font-size:.87rem;color:#374151;align-items:flex-start;line-height:1.5}
-.recs ul li::before{content:'•';font-weight:900;color:#4CAF82;flex-shrink:0;margin-top:2px}
-.recs hr{border:none;border-top:1.5px solid #F0F0F0;margin:15px 0}
+.contacto h3{
+font-family:'Fredoka One',cursive;
+font-size:1.1rem;
+color:#4CAF82;
+margin-bottom:12px
+}
 
-.nota{background:#F0FDF4;border-radius:17px;padding:19px 21px;margin-top:20px;border-left:4px solid #4CAF82}
-.nota p{font-size:.87rem;color:#15803D;line-height:1.6}
+.contacto p{
+font-size:.9rem;
+margin-bottom:8px;
+color:#374151
+}
 
-footer{background:#1F2937;color:rgba(255,255,255,.6);text-align:center;padding:28px 20px;font-size:.82rem}
+.contacto a{
+color:#4A90D9;
+text-decoration:none;
+font-weight:700
+}
+
+footer{
+background:#1F2937;
+color:rgba(255,255,255,.6);
+text-align:center;
+padding:28px 20px;
+font-size:.82rem;
+margin-top:40px
+}
+
 footer strong{color:#fff}
-footer p{margin-top:5px}
-footer small{font-size:.75rem;opacity:.5}
 </style>
 </head>
+
 <body>
 
 <header>
-  <span class="h-emoji">🌱</span>
-  <h1>Apoyos en Casa</h1>
-  <p>Recursos para acompañar el desarrollo de tu hijo/a</p>
+<span class="h-emoji">🌱</span>
+<h1>Apoyos en Casa</h1>
+<p>Recursos para acompañar el desarrollo de tu hijo/a</p>
 </header>
-
-<div class="aw">
-  <div class="aviso">
-    <strong>Importante leer antes de comenzar</strong>
-    <p>Este material es un <strong>apoyo para el hogar</strong>, no reemplaza la evaluación ni el acompañamiento de un profesional. Si tienes dudas sobre el desarrollo de tu hijo/a, busca orientación especializada. Este recurso requiere <strong>constancia, rutina y compromiso</strong> del adulto para ver resultados.</p>
-  </div>
-</div>
 
 <div class="wrap">
 
-  <div class="card-info">
-    <h2>¿Cómo usar esta guía?</h2>
-    <ul class="steps">
-      <li><span class="snum">1</span> Elige la sección que mejor describe lo que observas en tu hijo/a.</li>
-      <li><span class="snum">2</span> Lee las recomendaciones y prueba las actividades en casa.</li>
-      <li><span class="snum">3</span> Mira los videos sugeridos junto a tu hijo/a, con atención.</li>
-      <li><span class="snum">4</span> Sé constante: unos minutos al día hacen una gran diferencia.</li>
-      <li><span class="snum">5</span> Si no ves mejoras en varias semanas, busca apoyo profesional.</li>
-    </ul>
-  </div>
+<div class="sec-title" style="color:#F4845F">Elige el área de apoyo</div>
 
-  <div class="badge">
-    <h3>Recuerda</h3>
-    <p>El apoyo más importante que puedes dar es tu presencia y dedicación. No se trata de hacer todo perfecto, sino de acompañar a tu hijo/a con amor y constancia. <strong>Con 10 a 15 minutos al día, todos los días, ya estás haciendo una diferencia enorme.</strong></p>
-  </div>
+<!-- TARJETA LENGUAJE -->
+<div class="tarjeta t2" id="t2">
+<div class="thead" onclick="tog('t2')">
+<div class="thl">
+<span class="tico">💬</span>
+<div>
+<div class="ttitle">Lenguaje</div>
+<div class="tsub">Estimular vocabulario y comunicación</div>
+</div>
+</div>
+<span class="chev">▼</span>
+</div>
 
-  <div class="sec-title" style="color:#F4845F">Elige el área de apoyo</div>
+<div class="tbody">
 
-  <!-- TARJETA 1: ESTIMULACIÓN -->
-  <div class="tarjeta t1" id="t1">
-    <div class="thead" onclick="tog('t1')">
-      <div class="thl">
-        <span class="tico">🌟</span>
-        <div><div class="ttitle">Estimulación en casa para todos</div><div class="tsub">Actividades y juegos para el desarrollo general</div></div>
-      </div>
-      <span class="chev">▼</span>
-    </div>
-    <div class="tbody">
-
-      <div class="sub">
-        <div class="sub-t">¿Qué puedes hacer en casa?</div>
-        <div class="sub-b">
-          <ul class="rl">
-            <li>Jugar con plastilina o masa: amasar, rodar, aplastar y pellizcar. Fortalece las manos y estimula los sentidos.</li>
-            <li>Juego con arena o tierra: llenar, vaciar, construir. El contacto con la naturaleza estimula el cerebro.</li>
-            <li>Bloques y construcciones: apilar, hacer torres, derribarlas. Desarrolla la concentración y el pensamiento.</li>
-            <li>Dibujo y pintura libre: sin moldes ni reglas. Que el niño/a exprese lo que quiera con colores y formas.</li>
-            <li>Recortar con tijeras de punta redonda y pegar. Rasgar papel en trocitos con los dedos también es excelente.</li>
-            <li>Juego simbólico: jugar a la tienda, al doctor, a la cocinita. Desarrolla el lenguaje y la imaginación.</li>
-            <li>Jugar con agua: pasar agua de un vaso a otro, con esponja o embudo. Es una actividad sensorial completa.</li>
-            <li>Armar rompecabezas: empieza con pocas piezas según la edad del niño/a.</li>
-            <li>Leer un cuento corto todas las noches, aunque sean 5 minutos. Señala las imágenes y haz preguntas.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="sub">
-        <div class="sub-t">El juego libre con otros niños</div>
-        <div class="sub-b">
-          <ul class="rl">
-            <li>Permitir que el niño/a juegue con otros niños en el parque o el vecindario, con supervisión. El juego entre pares desarrolla el lenguaje y las emociones.</li>
-            <li>No hace falta comprar juguetes caros: cajas de cartón, telas, ollas y cucharas de madera son materiales de juego excelentes.</li>
-            <li>El adulto puede participar del juego sin dirigirlo todo. Déjalo a él/ella ser el líder.</li>
-            <li>Llevar al niño/a al preescolar o a grupos de juego es muy beneficioso para su desarrollo social y del lenguaje.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="sub">
-        <div class="sub-t">Involucrar al niño/a en el hogar</div>
-        <div class="sub-b">
-          <ul class="rl">
-            <li>Pedir ayuda en tareas sencillas: revolver la ensalada, poner servilletas, doblar ropa pequeña. Todo eso es estimulación y autonomía al mismo tiempo.</li>
-            <li>Cocinar juntos es una actividad sensorial completa: tocar, oler, mezclar, contar ingredientes.</li>
-            <li>Regar plantas, recoger juguetes, llevar el plato al fregadero. Las pequeñas responsabilidades generan confianza.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="alert">
-        <div class="alert-t">Señales de alerta — ¿Cuándo consultar a un profesional?</div>
-        <div class="alert-b">
-          <ul class="al">
-            <li>El niño/a no muestra interés en jugar con otros niños ni con adultos.</li>
-            <li>No responde a su nombre ni a estímulos del entorno de forma consistente.</li>
-            <li>Tiene retrasos muy notorios comparado con niños de su misma edad en varias áreas a la vez.</li>
-            <li>Ha perdido habilidades que antes tenía: dejó de hablar, de caminar, etc.</li>
-          </ul>
-          <p class="alert-note">Si observas alguna de estas señales, consulta con el pediatra o un especialista. Detectar a tiempo siempre ayuda.</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- TARJETA 2: LENGUAJE -->
-  <div class="tarjeta t2" id="t2">
-    <div class="thead" onclick="tog('t2')">
-      <div class="thl">
-        <span class="tico">💬</span>
-        <div><div class="ttitle">Mi hijo/a habla poco o no forma bien las frases</div><div class="tsub">Vocabulario, expresión y comunicación</div></div>
-      </div>
-      <span class="chev">▼</span>
-    </div>
-    <div class="tbody">
-
-      <div class="sub">
-        <div class="sub-t">¿Qué puedes hacer en casa?</div>
-        <div class="sub-b">
-          <ul class="rl">
-            <li>Habla mucho con tu hijo/a: cuéntale lo que estás haciendo mientras lo haces. "Ahora mamá está cortando la cebolla, mira qué olor".</li>
-            <li>Dale tiempo para responder. No adelantes lo que quiere decir. Espera con paciencia y mantén contacto visual.</li>
-            <li>Haz preguntas abiertas: "¿Qué ves ahí?" en lugar de "¿Es un perro, sí o no?"</li>
-            <li>Amplía lo que dice: si dice "agua", tú di "¿Quieres agua fría? ¡Claro, aquí está!"</li>
-            <li>Baja a su altura cuando le hablas. El contacto visual es clave para aprender a comunicarse.</li>
-            <li>Reduce el tiempo de pantalla: las pantallas no enseñan a hablar, el contacto humano sí.</li>
-            <li>Nombra todo lo que ven al salir: "mira, un camión rojo, un árbol grande, una paloma gris".</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="sub">
-        <div class="sub-t">Juegos y canciones para estimular el lenguaje</div>
-        <div class="sub-b">
-          <ul class="rl">
-            <li>Jugar a los turnos: tú haces algo, él/ella responde. Como una pelota que va y viene entre los dos.</li>
-            <li>Jugar frente al espejo juntos: imiten gestos, expresiones y sonidos.</li>
-            <li>Usar títeres o muñecos para hacer pequeñas conversaciones inventadas.</li>
-            <li>Las canciones con gestos enseñan vocabulario de forma divertida. Cantar juntos todos los días, aunque sea en el carro.</li>
-          </ul>
-          <span class="vlabel">Videos recomendados:</span>
+<div class="sub">
+<div class="sub-t">Videos recomendados</div>
+<div class="sub-b">
 
 <div class="vlist">
 
-  <a class="vbtn"
-     href="https://www.youtube.com/watch?v=GLh7EyAWeSg"
-     target="_blank">
+<a class="vbtn" href="https://www.youtube.com/watch?v=GLh7EyAWeSg" target="_blank">
+<span class="ve">🎮</span>
+<span class="vt">
+<span class="vn">Juegos y dinámicas para estimular el lenguaje</span>
+<span class="vd">Actividades prácticas para hacer en casa</span>
+</span>
+<span class="va">▶</span>
+</a>
 
-    <span class="ve">🎮</span>
+<a class="vbtn" href="https://www.youtube.com/watch?v=Ae4M2OfR4S0" target="_blank">
+<span class="ve">🎶</span>
+<span class="vt">
+<span class="vn">Canciones para estimular el lenguaje</span>
+<span class="vd">Estimulación del lenguaje mediante música</span>
+</span>
+<span class="va">▶</span>
+</a>
 
-    <span class="vt">
-      <span class="vn">
-        Juegos y dinámicas para estimular el lenguaje
-      </span>
-
-      <span class="vd">
-        Actividades prácticas para hacer en casa
-      </span>
-    </span>
-
-    <span class="va">▶</span>
-  </a>
-
-  <a class="vbtn"
-     href="https://www.youtube.com/watch?v=Ae4M2OfR4S0"
-     target="_blank">
-
-    <span class="ve">🎶</span>
-
-    <span class="vt">
-      <span class="vn">
-        Canciones para estimular el lenguaje
-      </span>
-
-      <span class="vd">
-        Canciones infantiles con intención terapéutica
-      </span>
-    </span>
-
-    <span class="va">▶</span>
-  </a>
+<a class="vbtn" href="https://www.youtube.com/watch?v=YvGPYS3Yk20" target="_blank">
+<span class="ve">🔤</span>
+<span class="vt">
+<span class="vn">Abecedario fonético y conciencia fonológica</span>
+<span class="vd">Sonidos y reconocimiento de letras</span>
+</span>
+<span class="va">▶</span>
+</a>
 
 </div>
-
-      <div class="sub">
-        <div class="sub-t">Conciencia fonológica — los sonidos de las palabras</div>
-        <div class="sub-b">
-          <p style="font-size:.86rem;color:#6B7280;margin-bottom:10px">Muchos niños escriben tal como hablan. Antes de corregir la escritura, hay que trabajar cómo escuchan y pronuncian los sonidos.</p>
-          <ul class="rl">
-            <li>Palmear sílabas: "ca-sa" (dos palmadas), "ma-ri-po-sa" (cuatro palmadas).</li>
-            <li>Identificar el sonido inicial de palabras: "¿Con qué letra empieza MESA? ¡Con la M!"</li>
-            <li>Buscar palabras que rimen: "gato — pato — plato".</li>
-            <li>Decir las palabras muy despacio, sílaba por sílaba, antes de escribirlas.</li>
-          </ul>
-          <span class="vlabel">Videos recomendados:</span>
-          <div class="vlist">
-            <a class="vbtn" href="https://www.youtube.com/watch?v=YvGPYS3Yk20" target="_blank">
-              <span class="ve">🔡</span>
-              <span class="vt"><span class="vn">Abecedario fonético — Conciencia fonológica</span><span class="vd">Aprende los sonidos de cada letra</span></span>
-              <span class="va">▶</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="alert">
-        <div class="alert-t">Señales de alerta — ¿Cuándo consultar a un profesional?</div>
-        <div class="alert-b">
-          <ul class="al">
-            <li>A los 2 años no dice al menos 50 palabras ni combina dos palabras ("mamá agua", "más leche").</li>
-            <li>A los 3 años no forma frases de 3 palabras o más.</li>
-            <li>Las personas fuera de la familia no entienden lo que dice después de los 3 años.</li>
-            <li>Perdió palabras o habilidades que antes tenía.</li>
-            <li>No intenta comunicarse con gestos, señas ni palabras.</li>
-          </ul>
-          <p class="alert-note">Ante estas señales, consulta con el pediatra o un especialista en lenguaje. Cuanto antes, mejor.</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- TARJETA 3: PRONUNCIACIÓN -->
-  <div class="tarjeta t3" id="t3">
-    <div class="thead" onclick="tog('t3')">
-      <div class="thl">
-        <span class="tico">🗣️</span>
-        <div><div class="ttitle">Mi hijo/a no pronuncia bien</div><div class="tsub">Sonidos, letras y movimientos de boca</div></div>
-      </div>
-      <span class="chev">▼</span>
-    </div>
-    <div class="tbody">
-
-      <div class="sub">
-        <div class="sub-t">Recomendaciones generales</div>
-        <div class="sub-b">
-          <ul class="rl">
-            <li>Habla despacio y claramente. Tu hijo/a aprende imitando lo que escucha.</li>
-            <li>Cuando pronuncie mal una palabra, no lo corrijas bruscamente. Repite tú la palabra correctamente de forma natural: "¡Qué bonito el tren!"</li>
-            <li>Practica siempre frente al espejo para que pueda ver los movimientos de la boca.</li>
-            <li>Apaga el televisor mientras practican. El silencio ayuda a concentrarse.</li>
-            <li>Rutina sugerida: 5 a 10 minutos cada día, a la misma hora, frente al espejo.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="sub">
-        <div class="sub-t">Ejercicios de lengua y boca (praxias)</div>
-        <div class="sub-b">
-          <p style="font-size:.86rem;color:#6B7280;margin-bottom:10px">Antes de trabajar sonidos específicos, hay que calentar y fortalecer los músculos de la boca. Hazlos con él/ella frente al espejo, como un juego.</p>
-          <ul class="rl">
-            <li>Sacar y meter la lengua lentamente, como si fuera una serpiente.</li>
-            <li>Pasar la lengua por los labios de un lado al otro, como si lamiera un helado.</li>
-            <li>Hinchar los cachetes y soltarlos con un "pop".</li>
-            <li>Morder suavemente el labio de abajo y luego el de arriba.</li>
-            <li>Hacer muecas exageradas frente al espejo. Que se rían juntos, eso también ayuda.</li>
-          </ul>
-          <span class="vlabel">Videos recomendados:</span>
-          <div class="vlist">
-            <a class="vbtn" href="https://www.youtube.com/watch?v=kLKJIMYyEq0" target="_blank">
-              <span class="ve">👅</span>
-              <span class="vt"><span class="vn">La lengua revoltosa — Movimientos de lengua</span><span class="vd">Canciones y ejercicios de praxias para niños</span></span>
-              <span class="va">▶</span>
-            </a>
-            <a class="vbtn" href="https://www.youtube.com/watch?v=i1NugIBgg00" target="_blank">
-              <span class="ve">🫦</span>
-              <span class="vt"><span class="vn">Praxias orofaciales infantiles</span><span class="vd">Ejercicios completos de boca y lengua</span></span>
-              <span class="va">▶</span>
-            </a>
-            <a class="vbtn" href="https://www.youtube.com/watch?v=ooVxPz9NDik" target="_blank">
-              <span class="ve">🎯</span>
-              <span class="vt"><span class="vn">Más ejercicios de praxias orofaciales</span><span class="vd">Práctica adicional de movimientos de boca</span></span>
-              <span class="va">▶</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="sub">
-        <div class="sub-t">Dificultad con la letra "R"</div>
-        <div class="sub-b">
-          <p style="font-size:.86rem;color:#6B7280;margin-bottom:10px">La "R" es una de las letras más difíciles. Es normal que niños menores de 5 años aún la estén aprendiendo.</p>
-          <ul class="rl">
-            <li>Ejercicio de vibración: que ponga los labios juntos y haga sonido de motor (brrr). Esto prepara la lengua para el sonido.</li>
-            <li>Imitar animales o sonidos: el tigre (rrrr), el motor de una moto.</li>
-            <li>Practicar frente al espejo para que observe cómo sube la lengua al paladar.</li>
-            <li>Decir palabras con "R" lentamente: rana, rojo, rueda, rata, rosa.</li>
-          </ul>
-          <span class="vlabel">Videos recomendados:</span>
-          <div class="vlist">
-            <a class="vbtn" href="https://www.youtube.com/watch?v=IOAIJYhks9k" target="_blank">
-              <span class="ve">🎵</span>
-              <span class="vt"><span class="vn">Fonema R — Con canciones, rimas y juegos</span><span class="vd">Terapia del lenguaje de forma divertida</span></span>
-              <span class="va">▶</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="sub">
-        <div class="sub-t">Dificultad con la letra "S"</div>
-        <div class="sub-b">
-          <ul class="rl">
-            <li>Ejercicios de soplo: apagar velitas, soplar una pluma, hacer burbujas de jabón. Estas actividades fortalecen los músculos del soplo.</li>
-            <li>Imitar el sonido de la serpiente: "ssss" con los dientes casi cerrados.</li>
-            <li>Practicar palabras despacio: sol, silla, sapo, sandía, sopa.</li>
-          </ul>
-          <span class="vlabel">Videos recomendados:</span>
-          <div class="vlist">
-            <a class="vbtn" href="https://www.youtube.com/watch?v=Hh3vt8dp14s&t=44s" target="_blank">
-              <span class="ve">🐍</span>
-              <span class="vt"><span class="vn">Fonema S — Ejercicios de pronunciación</span><span class="vd">Actividades de soplo y articulación</span></span>
-              <span class="va">▶</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="alert">
-        <div class="alert-t">Señales de alerta — ¿Cuándo consultar a un profesional?</div>
-        <div class="alert-b">
-          <ul class="al">
-            <li>A los 4 años aún no pronuncia la mayoría de los sonidos y personas fuera de la familia no lo entienden.</li>
-            <li>Sustituye o cambia muchas letras por otras de forma constante.</li>
-            <li>Tiene dificultad para masticar o tragar, o babea en exceso más allá de los 2 años.</li>
-            <li>La pronunciación no mejora nada después de practicar por varias semanas.</li>
-          </ul>
-          <p class="alert-note">Un logopeda o terapeuta de lenguaje puede hacer una evaluación y guiarte con un plan específico.</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- TARJETA 4: ATENCIÓN -->
-  <div class="tarjeta t4" id="t4">
-    <div class="thead" onclick="tog('t4')">
-      <div class="thl">
-        <span class="tico">🎯</span>
-        <div><div class="ttitle">Mi hijo/a se distrae mucho</div><div class="tsub">Atención, memoria y seguir instrucciones</div></div>
-      </div>
-      <span class="chev">▼</span>
-    </div>
-    <div class="tbody">
-
-      <div class="sub">
-        <div class="sub-t">¿Qué puedes hacer en casa?</div>
-        <div class="sub-b">
-          <ul class="rl">
-            <li>Da una instrucción a la vez: "Ve a buscar tu mochila". No des cuatro indicaciones seguidas porque el niño/a no puede retenerlas todas.</li>
-            <li>Reduce los distractores: apaga el televisor y la música cuando hace la tarea o una actividad que requiere concentración.</li>
-            <li>Establece una rutina fija todos los días a la misma hora: tarea, baño, cena, dormir.</li>
-            <li>Usa un reloj de arena o una alarma para que sepa cuánto tiempo tiene para cada actividad.</li>
-            <li>Avísale antes de cambiar de actividad: "En 5 minutos guardamos los juguetes".</li>
-            <li>Celebra cuando logra concentrarse, aunque sea por pocos minutos. El reconocimiento positivo motiva mucho.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="sub">
-        <div class="sub-t">Juegos para trabajar la atención y la memoria</div>
-        <div class="sub-b">
-          <ul class="rl">
-            <li>Juego de memoria: tarjetas de imágenes boca abajo, buscar los pares. Empieza con solo 4 pares e ir aumentando poco a poco.</li>
-            <li>Simón dice: seguir instrucciones con el cuerpo. "Simón dice: toca la nariz, levanta el brazo derecho".</li>
-            <li>¿Qué falta?: poner 5 objetos sobre la mesa, taparlos, quitar uno y preguntar ¿cuál falta?</li>
-            <li>Secuencias de colores: hacer un patrón con bloques o fichas de colores y pedir que el niño/a lo repita.</li>
-            <li>Armar rompecabezas adecuados para su edad, aumentando la dificultad gradualmente.</li>
-          </ul>
-          <span class="vlabel">Videos recomendados:</span>
-          <div class="vlist">
-            <a class="vbtn" href="https://www.youtube.com/watch?v=GzE_bKrDug8" target="_blank">
-              <span class="ve">🧩</span>
-              <span class="vt"><span class="vn">10 estrategias para mejorar la atención y concentración</span><span class="vd">Técnicas eficaces y fáciles de aplicar</span></span>
-              <span class="va">▶</span>
-            </a>
-            <a class="vbtn" href="https://www.youtube.com/watch?v=iLkt7uxtJZY" target="_blank">
-              <span class="ve">🎲</span>
-              <span class="vt"><span class="vn">Juegos para la atención y concentración</span><span class="vd">Actividades lúdicas para niños</span></span>
-              <span class="va">▶</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="sub">
-        <div class="sub-t">Motricidad fina — preparar las manos</div>
-        <div class="sub-b">
-          <ul class="rl">
-            <li>Modelar con plastilina o masa: aplastar, rodar bolitas, hacer figuras pequeñas.</li>
-            <li>Recortar con tijeras de punta redonda con supervisión, colorear y dibujar libremente.</li>
-            <li>Enhebrar macarrones o cuentas grandes en un hilo.</li>
-            <li>Rasgar papel en trocitos pequeños con solo los dedos.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="alert">
-        <div class="alert-t">Señales de alerta — ¿Cuándo consultar a un profesional?</div>
-        <div class="alert-b">
-          <ul class="al">
-            <li>La distracción es tan intensa que impide aprender, relacionarse o completar cualquier actividad del día a día.</li>
-            <li>El niño/a es muy impulsivo: actúa sin pensar, se pone en peligro o lastima a otros con frecuencia.</li>
-            <li>Los maestros también reportan dificultades importantes en el colegio.</li>
-            <li>A pesar de rutinas claras y práctica constante por semanas, no hay ninguna mejora.</li>
-          </ul>
-          <p class="alert-note">Un psicólogo o psicopedagogo puede hacer una valoración y orientarte con estrategias específicas.</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- TARJETA 5: AUTONOMÍA -->
-  <div class="tarjeta t5" id="t5">
-    <div class="thead" onclick="tog('t5')">
-      <div class="thl">
-        <span class="tico">⭐</span>
-        <div><div class="ttitle">Mi hijo/a necesita más apoyo</div><div class="tsub">Autonomía, cuidado personal e independencia</div></div>
-      </div>
-      <span class="chev">▼</span>
-    </div>
-    <div class="tbody">
-
-      <div class="sub">
-        <div class="sub-t">Lo más importante que debes saber</div>
-        <div class="sub-b">
-          <ul class="rl">
-            <li>No hagas por el niño/a lo que él puede intentar solo. Es mucho mejor acompañar y guiar que hacerlo todo por él.</li>
-            <li>Divide cada tarea en pasos pequeños y concretos: "Primero agarra el tenedor, ahora pincha la comida, ahora llévalo a la boca".</li>
-            <li>Usa imágenes o dibujos para recordarle la secuencia de cada tarea. Pégarlos en un lugar visible.</li>
-            <li>Celebra cada intento, no solo el resultado: "Muy bien que lo intentaste, eso es lo que más importa".</li>
-            <li>La constancia es clave: practica lo mismo todos los días a la misma hora hasta que lo haga solo.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="sub">
-        <div class="sub-t">Comer solo</div>
-        <div class="sub-b">
-          <ul class="rl">
-            <li>Desde los 12 a 18 meses puede intentar usar la cuchara. Déjalo intentarlo aunque se ensucie; ensuciarse es parte del aprendizaje.</li>
-            <li>Ofrece alimentos que pueda agarrar con la mano: trozos de fruta, pan, verduras cocidas en trocitos.</li>
-            <li>No lo apures ni limpies de inmediato. Apaga el televisor durante la comida para que se concentre.</li>
-            <li>Hazlo partícipe: que ponga su servilleta, lleve su vaso o elija entre dos opciones de comida.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="sub">
-        <div class="sub-t">Vestirse solo</div>
-        <div class="sub-b">
-          <ul class="rl">
-            <li>Empieza por lo más fácil: quitarse los zapatos, ponerse el pantalón con elástico.</li>
-            <li>Usa ropa sin botones ni cremalleras al principio, e irlos introduciendo gradualmente.</li>
-            <li>Practica cuando no hay prisa, nunca justo antes de salir al colegio.</li>
-            <li>Crea una rutina visual con imágenes de cada prenda en el orden correcto.</li>
-            <li>Deja que elija entre dos opciones de ropa: eso también genera autonomía y decisión.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="sub">
-        <div class="sub-t">Otras habilidades del día a día</div>
-        <div class="sub-b">
-          <ul class="rl">
-            <li>Lavarse las manos: pega en la pared los pasos dibujados: agua, jabón, frotar, enjuagar, secar.</li>
-            <li>Recoger sus juguetes: hazlo junto a él/ella al principio, hasta que lo haga solo con el tiempo.</li>
-            <li>Saludar y despedirse: practica en casa con juegos de rol, como pequeñas obras de teatro.</li>
-            <li>Ir al baño solo: recuérdale ir antes de salir a jugar. Ponle un horario visual con la rutina diaria.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="alert">
-        <div class="alert-t">Señales de alerta — ¿Cuándo consultar a un profesional?</div>
-        <div class="alert-b">
-          <ul class="al">
-            <li>A los 3 años no puede participar en ninguna tarea básica de cuidado personal, ni siquiera de forma parcial.</li>
-            <li>Se frustra de manera muy intensa ante cualquier tarea nueva y no puede calmarse.</li>
-            <li>Presenta dificultades en muchas áreas a la vez: lenguaje, autonomía, motricidad y socialización.</li>
-            <li>Hay un retraso muy notorio comparado con niños de su misma edad en la mayoría de actividades.</li>
-          </ul>
-          <p class="alert-note">Un terapeuta ocupacional o psicopedagogo puede ayudarte con un plan de trabajo individualizado.</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- RECOMENDACIONES DEL HOGAR -->
-  <div class="sec-title" style="color:#4CAF82;margin-top:38px">Recomendaciones para el hogar</div>
-
-  <div class="recs">
-    <h3>Pantallas y tecnología</h3>
-    <ul>
-      <li>Máximo 1 hora de pantalla al día en menores de 5 años.</li>
-      <li>Sin pantallas al menos 1 hora antes de dormir.</li>
-      <li>Al llegar del colegio, lo primero es lavarse las manos, cambiarse de ropa, comer y hacer la tarea. El teléfono o la televisión van al final, como recompensa.</li>
-      <li>Si ve videos, míralos junto a él/ella y habla sobre lo que ven.</li>
-    </ul>
-    <hr>
-    <h3>Rutinas del día a día</h3>
-    <ul>
-      <li>Los niños aprenden mejor cuando la vida es predecible y ordenada.</li>
-      <li>Establece una hora fija para levantarse, comer, hacer la tarea, bañarse y dormir.</li>
-      <li>Muéstrale la rutina del día con imágenes o dibujos pegados en un lugar visible.</li>
-      <li>Avísale siempre antes de cambiar de actividad para que no se sorprenda.</li>
-    </ul>
-    <hr>
-    <h3>El juego libre es esencial</h3>
-    <ul>
-      <li>Jugar con otros niños desarrolla el lenguaje, las emociones y la convivencia. Supervísalo pero déjalos jugar.</li>
-      <li>El contacto con la tierra, el agua y la arena estimula los sentidos de forma natural.</li>
-      <li>No todo tiene que ser un juguete comprado: cajas de cartón, telas y ollas son materiales de juego excelentes y gratuitos.</li>
-    </ul>
-    <hr>
-    <h3>Manos activas</h3>
-    <ul>
-      <li>Plastilina, masa y arena fortalecen las manos y preparan para la escritura.</li>
-      <li>Rasgar papel, pegar, recortar y pintar con los dedos son actividades simples y muy efectivas.</li>
-      <li>Involucrar al niño/a en tareas del hogar es estimulación gratuita: amasar, servir, lavar, doblar.</li>
-      <li>Cambiar de actividad cada 10 a 15 minutos, según la edad, para mantener la atención.</li>
-    </ul>
-  </div>
-
-  <div class="nota">
-    <p>Este material <strong>no funciona si se usa una sola vez</strong>. El cerebro de los niños aprende con la repetición constante. Si un día no puedes, está bien, pero retómalo al día siguiente. <strong>Tu presencia y constancia son el mejor recurso que tiene tu hijo/a.</strong></p>
-  </div>
-
+</div>
+</div>
+</div>
 </div>
 
-<div style="max-width:700px;margin:0 auto;padding:0 16px 32px">
+<!-- TARJETA PRONUNCIACIÓN -->
+<div class="tarjeta t3" id="t3">
+<div class="thead" onclick="tog('t3')">
+<div class="thl">
+<span class="tico">🗣️</span>
+<div>
+<div class="ttitle">Pronunciación</div>
+<div class="tsub">Fonemas, lengua y boca</div>
+</div>
+</div>
+<span class="chev">▼</span>
+</div>
 
-  <div style="background:#fff;border-radius:20px;padding:22px 24px;box-shadow:0 2px 12px rgba(0,0,0,.06);border-left:4px solid #4CAF82">
+<div class="tbody">
 
-    <p style="font-family:'Fredoka One',cursive;
-              font-size:1.1rem;
-              color:#4CAF82;
-              margin-bottom:12px">
+<div class="sub">
+<div class="sub-t">Praxias y movimientos de lengua</div>
+<div class="sub-b">
 
-      Contacto
+<div class="vlist">
 
-    </p>
+<a class="vbtn" href="https://www.youtube.com/watch?v=kLKJIMYyEq0&list=RDkLKJIMYyEq0&start_radio=1" target="_blank">
+<span class="ve">👅</span>
+<span class="vt">
+<span class="vn">La lengua revoltosa</span>
+<span class="vd">Movimientos de lengua y praxias</span>
+</span>
+<span class="va">▶</span>
+</a>
 
-    <p style="font-size:.88rem;color:#374151;margin-bottom:6px">
-      Material elaborado por <strong>Lady Zambrano</strong>
-    </p>
+<a class="vbtn" href="https://www.youtube.com/watch?v=i1NugIBgg00" target="_blank">
+<span class="ve">🫦</span>
+<span class="vt">
+<span class="vn">Praxias orofaciales infantiles</span>
+<span class="vd">Ejercicios completos de boca y lengua</span>
+</span>
+<span class="va">▶</span>
+</a>
 
-    <p style="font-size:.88rem;color:#374151;margin-bottom:6px">
-      📞
-      <a href="tel:0980075750"
-         style="color:#4A90D9;text-decoration:none;font-weight:700">
+<a class="vbtn" href="https://www.youtube.com/watch?v=ooVxPz9NDik" target="_blank">
+<span class="ve">🎯</span>
+<span class="vt">
+<span class="vn">Más ejercicios de praxias</span>
+<span class="vd">Movimientos y fortalecimiento oral</span>
+</span>
+<span class="va">▶</span>
+</a>
 
-         0980075750
+</div>
+</div>
+</div>
 
-      </a>
-    </p>
+<div class="sub">
+<div class="sub-t">Fonema R</div>
+<div class="sub-b">
 
-    <p style="font-size:.88rem;color:#374151">
+<div class="vlist">
 
-      ✉️
+<a class="vbtn" href="https://www.youtube.com/watch?app=desktop&v=IOAIJYhks9k" target="_blank">
+<span class="ve">🔠</span>
+<span class="vt">
+<span class="vn">Fonema R — Terapia del lenguaje</span>
+<span class="vd">Canciones, rimas y juegos para la R</span>
+</span>
+<span class="va">▶</span>
+</a>
 
-      <a href="mailto:ladyzambranos30@gmail.com"
-         style="color:#4A90D9;text-decoration:none;font-weight:700">
+</div>
+</div>
+</div>
 
-         ladyzambranos30@gmail.com
+<div class="sub">
+<div class="sub-t">Fonema S</div>
+<div class="sub-b">
 
-      </a>
+<div class="vlist">
 
-    </p>
+<a class="vbtn" href="https://www.youtube.com/watch?v=Hh3vt8dp14s&t=44s" target="_blank">
+<span class="ve">🐍</span>
+<span class="vt">
+<span class="vn">Fonema S</span>
+<span class="vd">Ejercicios y pronunciación del sonido S</span>
+</span>
+<span class="va">▶</span>
+</a>
 
-  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- TARJETA ATENCIÓN -->
+<div class="tarjeta t4" id="t4">
+<div class="thead" onclick="tog('t4')">
+<div class="thl">
+<span class="tico">🎯</span>
+<div>
+<div class="ttitle">Atención y concentración</div>
+<div class="tsub">Juegos y estrategias</div>
+</div>
+</div>
+<span class="chev">▼</span>
+</div>
+
+<div class="tbody">
+
+<div class="sub">
+<div class="sub-t">Videos recomendados</div>
+<div class="sub-b">
+
+<div class="vlist">
+
+<a class="vbtn" href="https://www.youtube.com/watch?v=GzE_bKrDug8" target="_blank">
+<span class="ve">🧠</span>
+<span class="vt">
+<span class="vn">10 estrategias para mejorar la atención</span>
+<span class="vd">Técnicas fáciles y eficaces</span>
+</span>
+<span class="va">▶</span>
+</a>
+
+<a class="vbtn" href="https://www.youtube.com/watch?v=iLkt7uxtJZY" target="_blank">
+<span class="ve">🎲</span>
+<span class="vt">
+<span class="vn">Juegos para la atención y concentración</span>
+<span class="vd">Actividades lúdicas infantiles</span>
+</span>
+<span class="va">▶</span>
+</a>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- CONTACTO -->
+<div class="contacto">
+<h3>Contacto</h3>
+
+<p><strong>Elaborado por:</strong> Lady Zambrano</p>
+
+<p>
+<strong>Teléfono:</strong>
+<a href="tel:0980075750">0980075750</a>
+</p>
+
+<p>
+<strong>Correo:</strong>
+<a href="mailto:ladyzambranos30@gmail.com">ladyzambranos30@gmail.com</a>
+</p>
+</div>
 
 </div>
 
 <footer>
-  <strong>Apoyos en Casa</strong> — Material de apoyo comunitario
-  <p>Creado con amor para familias que quieren acompañar el desarrollo de sus hijos/as.</p>
-  <p><small>Este recurso es orientativo y no reemplaza la evaluación ni el tratamiento profesional.</small></p>
+<strong>Apoyos en Casa</strong>
+<p>Material de apoyo comunitario para familias.</p>
 </footer>
 
 <script>
-function tog(id){document.getElementById(id).classList.toggle('open')}
+function tog(id){
+document.getElementById(id).classList.toggle('open')
+}
 </script>
+
 </body>
 </html>
+```
