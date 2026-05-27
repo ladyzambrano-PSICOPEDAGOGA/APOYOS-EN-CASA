@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Apoyo en Casa — Discapacidad Intelectual</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito',sans-serif;background:#F0F8FF;color:#1F2937;line-height:1.6}
+
+/* HEADER CELESTE */
+header{background:linear-gradient(135deg,#56CCF2,#2F80ED);padding:44px 20px 80px;text-align:center;position:relative;overflow:hidden}
+header::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(255,255,255,.15) 0%,transparent 60%)}
+.h-emoji{font-size:3rem;display:block;margin-bottom:8px;animation:bounce 2.5s infinite;position:relative}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+header h1{font-family:'Fredoka One',cursive;font-size:clamp(1.9rem,7vw,3rem);color:#fff;position:relative}
+header p.sub{color:rgba(255,255,255,.9);font-size:clamp(.9rem,3vw,1.05rem);margin-top:6px;font-weight:600;position:relative}
+
+/* AVISO FLOTANTE */
+.aviso-outer{position:relative;z-index:20;max-width:740px;margin:-44px auto 0;padding:0 16px}
+.aviso{background:#FFF3CD;border-left:5px solid #F59E0B;border-radius:16px;padding:18px 20px;box-shadow:0 8px 28px rgba(0,0,0,.15)}
+.aviso strong{font-weight:800;font-size:.93rem;color:#92400E;display:block;margin-bottom:5px}
+.aviso p{font-size:.86rem;color:#78350F;line-height:1.55}
+
+.wrap{max-width:740px;margin:0 auto;padding:20px 16px 60px}
+
+/* INTRO CARD */
+.intro-card{background:#fff;border-radius:20px;padding:24px;margin:16px 0 8px;box-shadow:0 2px 12px rgba(0,0,0,.07)}
+.intro-card h2{font-family:'Fredoka One',cursive;font-size:1.2rem;color:#2F80ED;margin-bottom:12px}
+.intro-card p{font-size:.9rem;color:#374151;line-height:1.6;margin-bottom:8px}
+.intro-card p:last-child{margin-bottom:0}
+
+/* BADGE */
+.badge{border-radius:18px;padding:18px 22px;margin:14px 0 8px;box-shadow:0 4px 14px rgba(0,0,0,.1)}
+.badge h3{font-family:'Fredoka One',cursive;font-size:1.05rem;margin-bottom:6px}
+.badge p{font-size:.86rem;line-height:1.55}
+.badge-blue{background:linear-gradient(135deg,#BFDBFE,#93C5FD)}.badge-blue h3{color:#1E40AF}.badge-blue p{color:#1E3A8A}
+
+/* DOMINIOS */
+.dominios-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}
+@media(max-width:500px){.dominios-grid{grid-template-columns:1fr}}
+.dom-card{border-radius:14px;padding:16px;text-align:center}
+.dom-card .dic{font-size:2rem;margin-bottom:6px}
+.dom-card h4{font-family:'Fredoka One',cursive;font-size:.95rem;margin-bottom:6px}
+.dom-card p{font-size:.8rem;line-height:1.45;color:#374151}
+.dc1{background:#EFF6FF;border:1.5px solid #BFDBFE}.dc1 h4{color:#2563EB}
+.dc2{background:#F0FDF4;border:1.5px solid #BBF7D0}.dc2 h4{color:#16A34A}
+.dc3{background:#FFF7ED;border:1.5px solid #FED7AA}.dc3 h4{color:#EA580C}
+
+/* SEC TITLE */
+.sec-title{font-family:'Fredoka One',cursive;font-size:1.35rem;margin:32px 0 13px;display:flex;align-items:center;gap:9px}
+
+/* TARJETAS */
+.tarjeta{border-radius:22px;margin-bottom:16px;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.08);transition:transform .2s,box-shadow .2s;opacity:0;transform:translateY(16px);animation:fu .5s forwards}
+.tarjeta:nth-child(1){animation-delay:.1s}.tarjeta:nth-child(2){animation-delay:.2s}
+.tarjeta:nth-child(3){animation-delay:.3s}.tarjeta:nth-child(4){animation-delay:.4s}
+@keyframes fu{to{opacity:1;transform:translateY(0)}}
+.tarjeta:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.12)}
+.thead{padding:18px 22px 15px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;user-select:none}
+.thl{display:flex;align-items:center;gap:13px}
+.tico{font-size:1.9rem;line-height:1}
+.ttitle{font-family:'Fredoka One',cursive;font-size:clamp(.98rem,4vw,1.18rem);line-height:1.2}
+.tsub{font-size:.78rem;opacity:.75;font-weight:600;margin-top:2px}
+.chev{font-size:.95rem;transition:transform .3s;opacity:.75}
+.tarjeta.open .chev{transform:rotate(180deg)}
+.tbody{display:none;background:#fff;padding:4px 22px 22px}
+.tarjeta.open .tbody{display:block}
+
+.t-leve .thead{background:linear-gradient(135deg,#4CAF82,#2E9E6B);color:#fff}
+.t-mod .thead{background:linear-gradient(135deg,#F59E0B,#D97706);color:#fff}
+.t-grave .thead{background:linear-gradient(135deg,#F97316,#EA580C);color:#fff}
+.t-prof .thead{background:linear-gradient(135deg,#EF4444,#DC2626);color:#fff}
+
+/* SUBSECCIONES */
+.sub{margin-top:17px;border-radius:13px;overflow:hidden;border:1.5px solid #ECECEC}
+.sub-t{font-weight:800;font-size:.92rem;padding:10px 15px;background:#F8F8F8;color:#1F2937;border-bottom:1.5px solid #ECECEC}
+.sub-b{padding:13px 15px}
+
+/* DOS COLUMNAS dificultades/fortalezas */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:4px}
+@media(max-width:480px){.two-col{grid-template-columns:1fr}}
+.col-dif{background:#FEF2F2;border-radius:12px;padding:12px 14px}
+.col-dif h5{color:#DC2626;font-size:.82rem;font-weight:800;margin-bottom:7px}
+.col-fort{background:#F0FDF4;border-radius:12px;padding:12px 14px}
+.col-fort h5{color:#16A34A;font-size:.82rem;font-weight:800;margin-bottom:7px}
+.col-dif ul,.col-fort ul{list-style:none;display:flex;flex-direction:column;gap:5px}
+.col-dif ul li{font-size:.82rem;color:#374151;display:flex;gap:7px;align-items:flex-start;line-height:1.4}
+.col-fort ul li{font-size:.82rem;color:#374151;display:flex;gap:7px;align-items:flex-start;line-height:1.4}
+.col-dif ul li::before{content:'•';color:#EF4444;font-weight:900;flex-shrink:0;margin-top:2px}
+.col-fort ul li::before{content:'✓';color:#16A34A;font-weight:900;flex-shrink:0;margin-top:2px}
+
+/* LISTAS */
+.rl{list-style:none;display:flex;flex-direction:column;gap:8px}
+.rl li{display:flex;gap:9px;font-size:.88rem;color:#374151;align-items:flex-start;line-height:1.55}
+.rl li::before{content:'✓';font-weight:900;color:#2F80ED;flex-shrink:0;margin-top:2px}
+
+/* ACTIVIDADES GRID */
+.act-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:14px 0 4px}
+@media(max-width:420px){.act-grid{grid-template-columns:repeat(2,1fr)}}
+.act-card{border-radius:13px;padding:12px 8px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:5px;border:1.5px solid #E5E7EB;background:#F9FAFB}
+.act-card .aic{font-size:1.8rem}
+.act-card p{font-size:.73rem;font-weight:700;color:#374151;line-height:1.25}
+.t-leve .act-card{background:#F0FAF5;border-color:#B7DFCC}
+.t-mod .act-card{background:#FFFBEB;border-color:#FDE68A}
+.t-grave .act-card{background:#FFF7ED;border-color:#FED7AA}
+.t-prof .act-card{background:#FEF2F2;border-color:#FECACA}
+
+/* BOTONES VIDEO */
+.vlabel{font-weight:800;font-size:.86rem;margin:14px 0 7px;color:#1F2937;display:block}
+.vlist{display:flex;flex-direction:column;gap:8px}
+.vbtn{display:flex;align-items:center;gap:11px;background:#EAF3FB;border:1.5px solid #C3DCF5;border-radius:12px;padding:12px 14px;text-decoration:none;color:#1A5FA8;font-weight:700;font-size:.87rem;transition:background .18s,transform .18s,border-color .18s,box-shadow .18s}
+.vbtn:hover{background:#D0E8F8;border-color:#4A90D9;transform:translateX(5px);box-shadow:0 3px 10px rgba(74,144,217,.18)}
+.vbtn .ve{font-size:1.3rem;flex-shrink:0}
+.vbtn .vt{display:flex;flex-direction:column;flex:1}
+.vbtn .vn{line-height:1.3}
+.vbtn .vd{font-size:.73rem;font-weight:600;color:#6B7280;margin-top:1px}
+.vbtn .va{font-size:.9rem;opacity:.4;flex-shrink:0}
+
+/* ALERTA */
+.alert{margin-top:17px;background:#FFFBF0;border:1.5px solid #FBBF24;border-radius:13px;overflow:hidden}
+.alert-t{background:#FEF3C7;padding:9px 15px;font-weight:800;font-size:.9rem;color:#92400E;border-bottom:1.5px solid #FBBF24}
+.alert-b{padding:12px 15px}
+.al{list-style:none;display:flex;flex-direction:column;gap:6px}
+.al li{display:flex;gap:9px;font-size:.86rem;color:#78350F;align-items:flex-start;line-height:1.5}
+.al li::before{content:'→';font-weight:900;flex-shrink:0;color:#D97706}
+.alert-note{margin-top:9px;font-size:.8rem;color:#92400E;font-style:italic;font-weight:700}
+
+/* RUTINAS */
+.rutina-wrap{display:flex;flex-direction:column;gap:14px;margin-top:6px}
+.rutina-card{background:#fff;border-radius:16px;padding:18px;box-shadow:0 2px 10px rgba(0,0,0,.06);border-top:4px solid #56CCF2}
+.rutina-card h4{font-family:'Fredoka One',cursive;font-size:1rem;color:#2F80ED;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.pasos-rutina{list-style:none;display:flex;flex-direction:column;gap:8px}
+.pasos-rutina li{display:flex;align-items:center;gap:12px;font-size:.88rem;color:#374151}
+.paso-ico{font-size:1.5rem;flex-shrink:0;width:36px;text-align:center}
+.paso-txt{flex:1;line-height:1.4}
+.paso-num-r{background:#2F80ED;color:#fff;width:22px;height:22px;border-radius:50%;font-size:.72rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+
+/* NOTA FINAL */
+.nota{background:#EFF6FF;border-radius:17px;padding:19px 21px;margin-top:20px;border-left:4px solid #2F80ED}
+.nota p{font-size:.87rem;color:#1E40AF;line-height:1.6}
+
+/* CONTACTO */
+.contacto{background:#fff;border-radius:20px;padding:20px 22px;margin-top:20px;box-shadow:0 2px 12px rgba(0,0,0,.06);border-left:4px solid #2F80ED}
+.contacto h3{font-family:'Fredoka One',cursive;font-size:1.05rem;color:#2F80ED;margin-bottom:10px}
+.contacto p{font-size:.88rem;color:#374151;margin-bottom:5px}
+.contacto a{color:#2F80ED;text-decoration:none;font-weight:700}
+
+footer{background:#1F2937;color:rgba(255,255,255,.6);text-align:center;padding:28px 20px;font-size:.82rem}
+footer strong{color:#fff}
+footer p{margin-top:5px}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <span class="h-emoji">🌈</span>
+  <h1>Apoyo en Casa</h1>
+  <p class="sub">Guía de apoyo familiar para niños con discapacidad intelectual</p>
+</header>
+
+<!-- AVISO -->
+<div class="aviso-outer">
+  <div class="aviso">
+    <strong>⚠️ Importante leer antes de comenzar</strong>
+    <p>Esta guía es un <strong>recurso orientador para familias</strong>, no es un diagnóstico ni reemplaza la evaluación de un profesional (psicólogo, psicopedagogo, neuropediatra). El diagnóstico de discapacidad intelectual lo realiza un equipo especializado. Este material está pensado para acompañar, orientar y empoderar a las familias en el día a día.</p>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- INTRODUCCIÓN -->
+  <div class="intro-card" style="margin-top:28px">
+    <h2>Una palabra para las familias</h2>
+    <p>Recibir un diagnóstico puede sentirse como una sentencia. No lo es. <strong>Tu hijo/a tiene capacidad de crecer, aprender y ganar independencia.</strong> El camino puede ser más lento, pero siempre hay avance, y cada pequeño logro cuenta enormemente.</p>
+    <p>El objetivo de esta guía es darte herramientas concretas para acompañar ese proceso desde casa. No estás solo/a. La constancia, el amor y las rutinas son las herramientas más poderosas que tienes.</p>
+    <p>Recuerda siempre: <strong>cada niño/a es diferente y único</strong>. No todos presentan las mismas habilidades ni dificultades, aunque compartan el mismo diagnóstico.</p>
+  </div>
+
+  <!-- QUÉ ES LA DI -->
+  <div class="intro-card">
+    <h2>¿Qué es la discapacidad intelectual?</h2>
+    <p>Según el DSM-5, la discapacidad intelectual es una condición que se caracteriza por limitaciones en el <strong>funcionamiento intelectual</strong> (razonamiento, aprendizaje, resolución de problemas) y en el <strong>comportamiento adaptativo</strong>, que incluye habilidades prácticas, sociales y conceptuales del día a día.</p>
+    <p>Estas limitaciones aparecen durante el período de desarrollo. No es una enfermedad, no es una culpa de nadie, y <strong>no define el valor ni el potencial de la persona.</strong></p>
+  </div>
+
+  <!-- LOS TRES DOMINIOS -->
+  <div class="sec-title" style="color:#2F80ED">Los tres dominios que se trabajan</div>
+  <div class="dominios-grid">
+    <div class="dom-card dc1">
+      <div class="dic">📚</div>
+      <h4>Conceptual</h4>
+      <p>Lenguaje, lectura, escritura, matemáticas, razonamiento, memoria y manejo del tiempo y el dinero.</p>
+    </div>
+    <div class="dom-card dc2">
+      <div class="dic">🤝</div>
+      <h4>Social</h4>
+      <p>Comunicación, relaciones con otros, empatía, seguir normas sociales, reconocer situaciones de riesgo.</p>
+    </div>
+    <div class="dom-card dc3">
+      <div class="dic">🏠</div>
+      <h4>Práctico</h4>
+      <p>Cuidado personal, tareas del hogar, movilidad, manejo del dinero, seguridad, organización de la vida diaria.</p>
+    </div>
+  </div>
+
+  <div class="badge badge-blue">
+    <h3>Lo más importante que debes saber</h3>
+    <p>El objetivo no es que tu hijo/a haga todo igual que los demás. El objetivo es que <strong>alcance la mayor independencia posible en su propia medida</strong>. Con rutinas, paciencia y actividades adecuadas, los avances son reales y sostenidos.</p>
+  </div>
+
+  <!-- NIVELES -->
+  <div class="sec-title" style="color:#2F80ED">Niveles de discapacidad intelectual</div>
+
+  <!-- LEVE -->
+  <div class="tarjeta t-leve" id="t1">
+    <div class="thead" onclick="tog('t1')">
+      <div class="thl"><span class="tico">🟢</span><div><div class="ttitle">Discapacidad intelectual leve</div><div class="tsub">El nivel más frecuente — gran potencial de autonomía</div></div></div>
+      <span class="chev">▼</span>
+    </div>
+    <div class="tbody">
+
+      <div class="sub">
+        <div class="sub-t">¿Cómo se ve esto en la vida diaria?</div>
+        <div class="sub-b">
+          <p style="font-size:.88rem;color:#374151;line-height:1.6;margin-bottom:10px">Los niños/as con DI leve suelen aprender muchas habilidades de forma más lenta que sus pares, pero con el apoyo adecuado pueden alcanzar una buena autonomía. En casa y en la escuela pueden participar en casi todas las actividades con algunas adaptaciones.</p>
+          <div class="two-col">
+            <div class="col-dif">
+              <h5>Posibles dificultades</h5>
+              <ul>
+                <li>Aprendizaje escolar más lento</li>
+                <li>Dificultad para organizar tareas complejas</li>
+                <li>Problemas con el manejo del dinero y el tiempo</li>
+                <li>Le cuesta más seguir instrucciones largas</li>
+                <li>Puede necesitar más repeticiones para aprender</li>
+              </ul>
+            </div>
+            <div class="col-fort">
+              <h5>Fortalezas que puede desarrollar</h5>
+              <ul>
+                <li>Buena autonomía en el cuidado personal</li>
+                <li>Aprende rutinas y las mantiene</li>
+                <li>Puede trabajar con apoyo supervisado</li>
+                <li>Desarrolla habilidades sociales significativas</li>
+                <li>Puede leer y escribir con adaptaciones</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub">
+        <div class="sub-t">📚 Área conceptual — qué trabajar</div>
+        <div class="sub-b">
+          <ul class="rl">
+            <li>Practicar la lectura con libros simples, imágenes grandes y frases cortas.</li>
+            <li>Trabajar conceptos básicos de tiempo: hoy, mañana, ayer, días de la semana.</li>
+            <li>Juegos con dinero: identificar monedas, hacer compras sencillas de juego.</li>
+            <li>Listas visuales de pasos para organizar tareas (con dibujos o fotos).</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sub">
+        <div class="sub-t">🤝 Área social — qué trabajar</div>
+        <div class="sub-b">
+          <ul class="rl">
+            <li>Practicar saludos, presentaciones y despedidas en casa con juego de roles.</li>
+            <li>Enseñar a pedir ayuda cuando no entiende algo.</li>
+            <li>Conversaciones sobre emociones: "¿Cómo te sientes hoy? ¿Por qué?"</li>
+            <li>Participar en juegos grupales con reglas simples.</li>
+            <li>Hablar sobre situaciones de riesgo: "¿Qué haces si un desconocido te habla?"</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sub">
+        <div class="sub-t">🏠 Área práctica — qué trabajar</div>
+        <div class="sub-b">
+          <ul class="rl">
+            <li>Enseñar la rutina de higiene paso a paso: baño, dientes, ropa.</li>
+            <li>Participar en tareas del hogar: poner la mesa, doblar ropa, barrer.</li>
+            <li>Preparar alimentos simples con supervisión: un sándwich, un vaso de jugo.</li>
+            <li>Practicar el uso del transporte cercano con acompañamiento primero.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sub">
+        <div class="sub-t">🎯 Actividades para casa</div>
+        <div class="sub-b">
+          <div class="act-grid">
+            <div class="act-card"><span class="aic">🛒</span><p>Juego de compras con monedas</p></div>
+            <div class="act-card"><span class="aic">📅</span><p>Calendario diario visual</p></div>
+            <div class="act-card"><span class="aic">🍳</span><p>Cocinar recetas simples</p></div>
+            <div class="act-card"><span class="aic">📖</span><p>Lectura con imágenes</p></div>
+            <div class="act-card"><span class="aic">🎭</span><p>Juego de roles sociales</p></div>
+            <div class="act-card"><span class="aic">🧹</span><p>Tareas del hogar asignadas</p></div>
+          </div>
+          <span class="vlabel">Videos recomendados:</span>
+          <div class="vlist">
+            <a class="vbtn" href="https://m.youtube.com/watch?v=IXzBaCtVzUY&t=169s" target="_blank">
+              <span class="ve">🎓</span><span class="vt"><span class="vn">¿Cómo educar a un niño con discapacidad intelectual?</span><span class="vd">Orientación práctica para familias</span></span><span class="va">▶</span>
+            </a>
+            <a class="vbtn" href="https://youtu.be/TV8QxUfblwA?si=A9J-kxCedMRXIUXw" target="_blank">
+              <span class="ve">🎮</span><span class="vt"><span class="vn">Juegos caseros para discapacidad intelectual</span><span class="vd">Ideas de actividades para hacer en casa</span></span><span class="va">▶</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert">
+        <div class="alert-t">⚠️ Señales de que necesita apoyo adicional</div>
+        <div class="alert-b">
+          <ul class="al">
+            <li>No logra ningún avance en habilidades básicas después de meses de práctica constante.</li>
+            <li>Presenta comportamientos que lo ponen en riesgo a él/ella o a otros.</li>
+            <li>Hay retroceso en habilidades que ya había adquirido.</li>
+          </ul>
+          <p class="alert-note">Consulta con el equipo de apoyo (psicólogo, psicopedagogo, terapeuta ocupacional) para ajustar el plan de trabajo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODERADA -->
+  <div class="tarjeta t-mod" id="t2">
+    <div class="thead" onclick="tog('t2')">
+      <div class="thl"><span class="tico">🟡</span><div><div class="ttitle">Discapacidad intelectual moderada</div><div class="tsub">Con apoyo constante, logra avances reales</div></div></div>
+      <span class="chev">▼</span>
+    </div>
+    <div class="tbody">
+
+      <div class="sub">
+        <div class="sub-t">¿Cómo se ve esto en la vida diaria?</div>
+        <div class="sub-b">
+          <p style="font-size:.88rem;color:#374151;line-height:1.6;margin-bottom:10px">Los niños/as con DI moderada necesitan más apoyo y supervisión. Pueden aprender muchas habilidades funcionales, aunque el proceso requiere mucha repetición, paciencia y rutinas muy estructuradas. El objetivo principal es la mayor autonomía posible en su vida cotidiana.</p>
+          <div class="two-col">
+            <div class="col-dif">
+              <h5>Posibles dificultades</h5>
+              <ul>
+                <li>Comunicación verbal limitada o diferente</li>
+                <li>Dificultad para leer y escribir de forma convencional</li>
+                <li>Necesita supervisión en actividades del hogar</li>
+                <li>Le cuesta entender situaciones sociales complejas</li>
+                <li>Puede tener dificultad para regular emociones</li>
+              </ul>
+            </div>
+            <div class="col-fort">
+              <h5>Fortalezas que puede desarrollar</h5>
+              <ul>
+                <li>Aprende rutinas claras y las sigue con constancia</li>
+                <li>Puede realizar tareas de cuidado personal con guía</li>
+                <li>Desarrolla vínculos afectivos fuertes</li>
+                <li>Puede comunicarse con apoyo visual o gestual</li>
+                <li>Participa en actividades familiares y comunitarias</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub">
+        <div class="sub-t">📚 Área conceptual — qué trabajar</div>
+        <div class="sub-b">
+          <ul class="rl">
+            <li>Usar pictogramas y tarjetas visuales para comunicar necesidades básicas.</li>
+            <li>Reconocimiento de su nombre escrito, colores, formas y números del 1 al 10.</li>
+            <li>Lectura global de palabras funcionales: BAÑO, SALIDA, PELIGRO, MI CASA.</li>
+            <li>Trabajar conceptos de antes/después con secuencias de imágenes.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sub">
+        <div class="sub-t">🤝 Área social — qué trabajar</div>
+        <div class="sub-b">
+          <ul class="rl">
+            <li>Practicar saludos con imágenes y gestos: hola, adiós, gracias, por favor.</li>
+            <li>Enseñar a expresar emociones básicas: contento, triste, enojado, con miedo.</li>
+            <li>Participar en actividades familiares con un rol claro y sencillo.</li>
+            <li>Practicar el turno para hablar y escuchar con juegos simples.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sub">
+        <div class="sub-t">🏠 Área práctica — qué trabajar</div>
+        <div class="sub-b">
+          <ul class="rl">
+            <li>Enseñar el vestido y desvestido con ropa fácil, paso a paso, con apoyo visual.</li>
+            <li>Secuencia de lavado de manos con pictogramas pegados en la pared.</li>
+            <li>Participar en tareas simples: poner su plato, recoger sus juguetes, tirar la basura.</li>
+            <li>Usar un horario visual del día para reducir la ansiedad ante los cambios.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sub">
+        <div class="sub-t">🎯 Actividades para casa</div>
+        <div class="sub-b">
+          <div class="act-grid">
+            <div class="act-card"><span class="aic">🃏</span><p>Tarjetas de pictogramas</p></div>
+            <div class="act-card"><span class="aic">🎨</span><p>Pintura con dedos</p></div>
+            <div class="act-card"><span class="aic">🧩</span><p>Rompecabezas sencillos</p></div>
+            <div class="act-card"><span class="aic">🎵</span><p>Canciones con movimientos</p></div>
+            <div class="act-card"><span class="aic">🗂️</span><p>Clasificar objetos por color</p></div>
+            <div class="act-card"><span class="aic">🤲</span><p>Plastilina y texturas</p></div>
+          </div>
+          <span class="vlabel">Videos recomendados:</span>
+          <div class="vlist">
+            <a class="vbtn" href="https://m.youtube.com/watch?v=IXzBaCtVzUY&t=169s" target="_blank">
+              <span class="ve">🎓</span><span class="vt"><span class="vn">¿Cómo educar a un niño con discapacidad intelectual?</span><span class="vd">Orientación práctica para familias</span></span><span class="va">▶</span>
+            </a>
+            <a class="vbtn" href="https://youtu.be/TV8QxUfblwA?si=A9J-kxCedMRXIUXw" target="_blank">
+              <span class="ve">🎮</span><span class="vt"><span class="vn">Juegos caseros para discapacidad intelectual</span><span class="vd">Ideas de actividades para hacer en casa</span></span><span class="va">▶</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert">
+        <div class="alert-t">⚠️ Señales de que necesita apoyo adicional</div>
+        <div class="alert-b">
+          <ul class="al">
+            <li>Comportamientos autolesivos o agresivos frecuentes que no se pueden manejar en casa.</li>
+            <li>Dificultades severas para comunicarse que generan mucha frustración.</li>
+            <li>Retroceso en habilidades que ya había consolidado.</li>
+          </ul>
+          <p class="alert-note">El equipo interdisciplinario (terapia ocupacional, fonoaudiología, psicología) puede apoyar con estrategias específicas para tu hijo/a.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GRAVE -->
+  <div class="tarjeta t-grave" id="t3">
+    <div class="thead" onclick="tog('t3')">
+      <div class="thl"><span class="tico">🟠</span><div><div class="ttitle">Discapacidad intelectual grave</div><div class="tsub">El acompañamiento familiar es fundamental</div></div></div>
+      <span class="chev">▼</span>
+    </div>
+    <div class="tbody">
+
+      <div class="sub">
+        <div class="sub-t">¿Cómo se ve esto en la vida diaria?</div>
+        <div class="sub-b">
+          <p style="font-size:.88rem;color:#374151;line-height:1.6;margin-bottom:10px">Los niños/as con DI grave necesitan supervisión y apoyo constante en casi todas las actividades. Sin embargo, <strong>pueden aprender habilidades funcionales básicas</strong> con mucha repetición, estructuras muy claras y ambientes predecibles. El vínculo afectivo y la estimulación constante son fundamentales.</p>
+          <div class="two-col">
+            <div class="col-dif">
+              <h5>Posibles dificultades</h5>
+              <ul>
+                <li>Comunicación muy limitada o no verbal</li>
+                <li>Necesita ayuda en la mayoría de actividades de cuidado personal</li>
+                <li>Dificultad importante para entender instrucciones</li>
+                <li>Puede tener conductas repetitivas o difíciles de manejar</li>
+                <li>Mayor posibilidad de condiciones asociadas (motoras, sensoriales)</li>
+              </ul>
+            </div>
+            <div class="col-fort">
+              <h5>Lo que sí puede lograr</h5>
+              <ul>
+                <li>Reconocer a sus personas cercanas</li>
+                <li>Expresar necesidades básicas con apoyo</li>
+                <li>Participar en rutinas muy estructuradas</li>
+                <li>Responder a estímulos sensoriales positivos</li>
+                <li>Desarrollar pequeñas habilidades de autonomía</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub">
+        <div class="sub-t">📚 Área conceptual — qué trabajar</div>
+        <div class="sub-b">
+          <ul class="rl">
+            <li>Reconocimiento de objetos de uso cotidiano (su vaso, su cepillo, su plato).</li>
+            <li>Asociar imágenes con objetos reales: foto del baño = ir al baño.</li>
+            <li>Responder a su nombre y a instrucciones muy simples de una palabra: "ven", "siéntate", "dame".</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sub">
+        <div class="sub-t">🤝 Área social — qué trabajar</div>
+        <div class="sub-b">
+          <ul class="rl">
+            <li>Estimular el contacto visual: hablarle a la altura de sus ojos.</li>
+            <li>Responder a sus expresiones aunque no sean verbales: una sonrisa, un sonido, un gesto.</li>
+            <li>Mantener rutinas de interacción: canciones, juegos de palmas, cuentos con imágenes.</li>
+            <li>Enseñar formas básicas de comunicar sí/no (gesto, imagen, objeto).</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sub">
+        <div class="sub-t">🏠 Área práctica — qué trabajar</div>
+        <div class="sub-b">
+          <ul class="rl">
+            <li>Participar en partes de la rutina aunque sea con asistencia: sostener el cepillo, llevarse la cuchara.</li>
+            <li>Señalar o acercarse hacia lo que quiere o necesita.</li>
+            <li>Tolerar cambios graduales en texturas, olores, ambientes (integración sensorial).</li>
+            <li>Horario visual muy claro con fotos reales de su propia rutina.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sub">
+        <div class="sub-t">🎯 Actividades para casa</div>
+        <div class="sub-b">
+          <div class="act-grid">
+            <div class="act-card"><span class="aic">🎵</span><p>Música y canciones suaves</p></div>
+            <div class="act-card"><span class="aic">🤲</span><p>Estimulación táctil y texturas</p></div>
+            <div class="act-card"><span class="aic">🫧</span><p>Juego con agua y espuma</p></div>
+            <div class="act-card"><span class="aic">📸</span><p>Álbum de fotos familiares</p></div>
+            <div class="act-card"><span class="aic">🏃</span><p>Movimiento y masaje suave</p></div>
+            <div class="act-card"><span class="aic">🃏</span><p>Tarjetas de comunicación</p></div>
+          </div>
+          <span class="vlabel">Videos recomendados:</span>
+          <div class="vlist">
+            <a class="vbtn" href="https://m.youtube.com/watch?v=IXzBaCtVzUY&t=169s" target="_blank">
+              <span class="ve">🎓</span><span class="vt"><span class="vn">¿Cómo educar a un niño con discapacidad intelectual?</span><span class="vd">Orientación práctica para familias</span></span><span class="va">▶</span>
+            </a>
+            <a class="vbtn" href="https://youtu.be/TV8QxUfblwA?si=A9J-kxCedMRXIUXw" target="_blank">
+              <span class="ve">🎮</span><span class="vt"><span class="vn">Juegos caseros para discapacidad intelectual</span><span class="vd">Ideas de actividades para hacer en casa</span></span><span class="va">▶</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert">
+        <div class="alert-t">⚠️ Señales de que necesita apoyo adicional</div>
+        <div class="alert-b">
+          <ul class="al">
+            <li>Conductas autolesivas frecuentes e intensas.</li>
+            <li>Pérdida de habilidades que ya tenía sin causa aparente.</li>
+            <li>Dificultades para alimentarse, dormir o moverse que afectan su calidad de vida.</li>
+          </ul>
+          <p class="alert-note">El apoyo de un equipo interdisciplinario es fundamental en este nivel. No dudes en buscar orientación especializada.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROFUNDA -->
+  <div class="tarjeta t-prof" id="t4">
+    <div class="thead" onclick="tog('t4')">
+      <div class="thl"><span class="tico">🔴</span><div><div class="ttitle">Discapacidad intelectual profunda</div><div class="tsub">El cuidado y el vínculo son la base de todo</div></div></div>
+      <span class="chev">▼</span>
+    </div>
+    <div class="tbody">
+
+      <div class="sub">
+        <div class="sub-t">¿Cómo se ve esto en la vida diaria?</div>
+        <div class="sub-b">
+          <p style="font-size:.88rem;color:#374151;line-height:1.6;margin-bottom:10px">Los niños/as con DI profunda requieren cuidado y supervisión completa en todas las áreas. Con frecuencia hay condiciones asociadas (motoras, sensoriales, de salud). Aun así, <strong>la estimulación, el afecto y la presencia familiar tienen un impacto real y positivo</strong> en su bienestar y desarrollo.</p>
+          <div class="two-col">
+            <div class="col-dif">
+              <h5>Posibles dificultades</h5>
+              <ul>
+                <li>Comunicación muy limitada o ausente</li>
+                <li>Dependencia total en el cuidado personal</li>
+                <li>Frecuentemente hay condiciones motoras o sensoriales asociadas</li>
+                <li>Poca respuesta a estímulos del entorno</li>
+              </ul>
+            </div>
+            <div class="col-fort">
+              <h5>Lo que sí puede lograr</h5>
+              <ul>
+                <li>Responder a estímulos sensoriales (luz, sonido, tacto)</li>
+                <li>Reconocer voces y personas cercanas</li>
+                <li>Expresar bienestar o malestar</li>
+                <li>Beneficiarse del contacto físico y afectivo</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub">
+        <div class="sub-t">🎯 Qué puedes hacer desde casa</div>
+        <div class="sub-b">
+          <ul class="rl">
+            <li>Hablarle constantemente aunque no responda verbalmente: tu voz es un estímulo fundamental.</li>
+            <li>Estimulación sensorial suave: música tranquila, texturas diferentes, aromas agradables, luz.</li>
+            <li>Contacto físico y masaje suave: contribuye al bienestar y la conexión.</li>
+            <li>Rutinas muy predecibles para reducir el estrés y aumentar la sensación de seguridad.</li>
+            <li>Mirar álbumes de fotos familiares juntos y nombrar las personas.</li>
+            <li>Canciones de cuna y canciones conocidas que generen respuesta emocional.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sub">
+        <div class="sub-t">🎯 Actividades para casa</div>
+        <div class="sub-b">
+          <div class="act-grid">
+            <div class="act-card"><span class="aic">🎵</span><p>Musicoterapia suave</p></div>
+            <div class="act-card"><span class="aic">💆</span><p>Masaje y contacto suave</p></div>
+            <div class="act-card"><span class="aic">🌈</span><p>Estimulación visual con colores</p></div>
+            <div class="act-card"><span class="aic">🌸</span><p>Aromaterapia y texturas</p></div>
+            <div class="act-card"><span class="aic">🗣️</span><p>Hablarle y cantarle</p></div>
+            <div class="act-card"><span class="aic">📸</span><p>Fotos y rostros familiares</p></div>
+          </div>
+          <span class="vlabel">Videos recomendados:</span>
+          <div class="vlist">
+            <a class="vbtn" href="https://m.youtube.com/watch?v=IXzBaCtVzUY&t=169s" target="_blank">
+              <span class="ve">🎓</span><span class="vt"><span class="vn">¿Cómo educar a un niño con discapacidad intelectual?</span><span class="vd">Orientación práctica para familias</span></span><span class="va">▶</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert">
+        <div class="alert-t">⚠️ Una palabra para el cuidador/a</div>
+        <div class="alert-b">
+          <ul class="al">
+            <li>Cuidar a una persona con DI profunda es una tarea que requiere apoyo para ti también.</li>
+            <li>Buscar grupos de apoyo para familias puede hacer una gran diferencia.</li>
+            <li>Tu bienestar importa. Pedir ayuda no es rendirse, es ser sabio/a.</li>
+          </ul>
+          <p class="alert-note">Consulta con el equipo de salud sobre servicios de apoyo disponibles en tu comunidad.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RUTINAS VISUALES -->
+  <div class="sec-title" style="color:#2F80ED;margin-top:38px">Rutinas visuales para imprimir</div>
+  <p style="font-size:.88rem;color:#6B7280;margin-bottom:16px">Las rutinas visuales son una de las herramientas más poderosas para niños con discapacidad intelectual. Ayudan a reducir la ansiedad, fomentar la autonomía y establecer orden en el día. Puedes imprimir o dibujar estas secuencias y pegarlas donde el niño/a las vea fácilmente.</p>
+
+  <div class="rutina-wrap">
+
+    <div class="rutina-card">
+      <h4>🌅 Al levantarse</h4>
+      <ul class="pasos-rutina">
+        <li><span class="paso-num-r">1</span><span class="paso-ico">🛏️</span><span class="paso-txt">Me levanto de la cama</span></li>
+        <li><span class="paso-num-r">2</span><span class="paso-ico">🚽</span><span class="paso-txt">Voy al baño</span></li>
+        <li><span class="paso-num-r">3</span><span class="paso-ico">🪥</span><span class="paso-txt">Me lavo los dientes</span></li>
+        <li><span class="paso-num-r">4</span><span class="paso-ico">🚿</span><span class="paso-txt">Me ducho o me lavo la cara</span></li>
+        <li><span class="paso-num-r">5</span><span class="paso-ico">👕</span><span class="paso-txt">Me visto</span></li>
+        <li><span class="paso-num-r">6</span><span class="paso-ico">🍳</span><span class="paso-txt">Desayuno</span></li>
+      </ul>
+    </div>
+
+    <div class="rutina-card">
+      <h4>🍽️ Antes y después de comer</h4>
+      <ul class="pasos-rutina">
+        <li><span class="paso-num-r">1</span><span class="paso-ico">🙌</span><span class="paso-txt">Me lavo las manos</span></li>
+        <li><span class="paso-num-r">2</span><span class="paso-ico">🪑</span><span class="paso-txt">Me siento en mi lugar</span></li>
+        <li><span class="paso-num-r">3</span><span class="paso-ico">🍽️</span><span class="paso-txt">Como despacio y sin distracciones</span></li>
+        <li><span class="paso-num-r">4</span><span class="paso-ico">🧹</span><span class="paso-txt">Llevo mi plato al fregadero</span></li>
+        <li><span class="paso-num-r">5</span><span class="paso-ico">🪥</span><span class="paso-txt">Me lavo los dientes</span></li>
+      </ul>
+    </div>
+
+    <div class="rutina-card">
+      <h4>🌙 Antes de dormir</h4>
+      <ul class="pasos-rutina">
+        <li><span class="paso-num-r">1</span><span class="paso-ico">📱</span><span class="paso-txt">Apagamos las pantallas</span></li>
+        <li><span class="paso-num-r">2</span><span class="paso-ico">🚿</span><span class="paso-txt">Me baño o me lavo</span></li>
+        <li><span class="paso-num-r">3</span><span class="paso-ico">🪥</span><span class="paso-txt">Me lavo los dientes</span></li>
+        <li><span class="paso-num-r">4</span><span class="paso-ico">👚</span><span class="paso-txt">Me pongo el pijama</span></li>
+        <li><span class="paso-num-r">5</span><span class="paso-ico">📖</span><span class="paso-txt">Cuento o canción tranquila</span></li>
+        <li><span class="paso-num-r">6</span><span class="paso-ico">😴</span><span class="paso-txt">A dormir a la misma hora siempre</span></li>
+      </ul>
+    </div>
+
+    <div class="rutina-card">
+      <h4>🙌 Lavado de manos</h4>
+      <ul class="pasos-rutina">
+        <li><span class="paso-num-r">1</span><span class="paso-ico">🚰</span><span class="paso-txt">Abro el agua</span></li>
+        <li><span class="paso-num-r">2</span><span class="paso-ico">💧</span><span class="paso-txt">Mojo las manos</span></li>
+        <li><span class="paso-num-r">3</span><span class="paso-ico">🧴</span><span class="paso-txt">Pongo jabón</span></li>
+        <li><span class="paso-num-r">4</span><span class="paso-ico">🤲</span><span class="paso-txt">Froto bien 20 segundos</span></li>
+        <li><span class="paso-num-r">5</span><span class="paso-ico">💦</span><span class="paso-txt">Enjuago bien</span></li>
+        <li><span class="paso-num-r">6</span><span class="paso-ico">🧻</span><span class="paso-txt">Me seco con la toalla</span></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- NOTA FINAL -->
+  <div class="nota" style="margin-top:28px">
+    <p><strong>Recuerda siempre:</strong> los avances pueden ser lentos, pero son reales. Cada pequeño logro de tu hijo/a es el resultado de tu dedicación y amor. No compares su progreso con el de otros niños, compáralo con él/ella mismo/a. <strong>Eso es lo que importa.</strong></p>
+  </div>
+
+  <!-- CONTACTO -->
+  <div class="contacto">
+    <h3>Contacto</h3>
+    <p>Material elaborado por <strong>Lady Zambrano</strong></p>
+    <p>📞 <a href="tel:0980075750">0980075750</a></p>
+    <p>✉️ <a href="mailto:ladyzambranos30@gmail.com">ladyzambranos30@gmail.com</a></p>
+  </div>
+
+</div>
+
+<footer>
+  <strong>Apoyo en Casa — Discapacidad Intelectual</strong>
+  <p>Guía de apoyo familiar elaborada con amor y criterio profesional.</p>
+  <p style="margin-top:8px;font-size:.76rem;opacity:.5">Este recurso es orientativo y no reemplaza la evaluación ni el tratamiento profesional. El diagnóstico lo realiza un equipo especializado.</p>
+</footer>
+
+<script>
+function tog(id){document.getElementById(id).classList.toggle('open')}
+</script>
+</body>
+</html>
